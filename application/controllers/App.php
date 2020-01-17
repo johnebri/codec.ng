@@ -10,10 +10,17 @@ class App extends CI_Controller {
 		// $this->load->library('session');
 		$this->load->helpers('url');
 		$this->load->database();
+		$this->load->helper('string');
 		
 		require_once(APPPATH.'controllers/Email.php'); //include Email controller
-        
-		   
+
+		
+
+		// if (password_verify("john", $hashed)) {
+		// 	echo 'match';
+		// } else {
+		// 	echo 'failed';
+		// }
 	}
 
 	public function index()
@@ -40,6 +47,13 @@ class App extends CI_Controller {
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		$subscription = $_POST['subscription'];
+
+		$activation_code = random_string('alnum', 25) . time();
+
+
+		if($subscription == "") {
+			$subscription = "no";
+		}
 
 		// check length of fullname
 		if(strlen($fullname) < 4) {
@@ -74,11 +88,15 @@ class App extends CI_Controller {
 		}
 
 		if($clean == true) { 
+			// hash password
+			$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
 			$tutorData = array(
 				'fullname' => $fullname,
 				'email' => $email,
-				'password' => $password,
-				'subscribe_to_mails' => $subscription
+				'password' => $hashed_password,
+				'subscribe_to_mails' => $subscription,
+				'activation_code' => $activation_code
 			);
 			$this->db->set('date_time', 'NOW()', FALSE);
 			$this->db->insert('tutors', $tutorData);
@@ -95,14 +113,14 @@ class App extends CI_Controller {
         
             $response = $emailObj->sendMail($email, "test@codac.pulaakutrade.com", "Codac", "Activate Your Account",  $body); //call function
            
-            // sendMail($to, $from, $from_name, $subject, $body);
-            
-// 			$to   = 'john.ebri@yahoo.com';
+// 				sendMail($to, $from, $from_name, $subject, $body);
+		
+// 			   $to   = 'john.ebri@yahoo.com';
 //             $from = 'test@codac.pulaakutrade.com';
 //             $name = 'PHPMailer and CodeIgniter';
 //             $subj = 'Test Message';
 //             $msg = 'This is mail about testing mailing using PHP.';
-        
+	
 //             $error=smtpmailer($to,$from, $name ,$subj, $msg);
 			
 			// clear the form

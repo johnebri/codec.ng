@@ -234,7 +234,7 @@
        <p class="hero-text">
         <span class="hero__green mr-1">Lorem ipsum dolor</span>sit amet consectetur adipisicing elit. Eligendi, iste.
        </p>
-       <button class="signup__btn btn btn-success px-5 mt-3 py-2">Sign up now</button>
+       <button class="signup__btn btn btn-success px-5 mt-3 py-2" data-target="#signupModal" data-toggle="modal">Sign up now</button>
       </div>
      </div>
      <div class="col-lg-6 col-sm-12 hero__courses text-center">

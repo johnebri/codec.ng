@@ -50,7 +50,7 @@ function signup() {
 	let fullname = jQuery('#fullname').val();
 	let email = jQuery('#email').val();
 	let password = jQuery('#password').val();
-	let subscription = jQuery('#subscription').val();
+	let subscription = jQuery('#sub_value').val();
 
 	jQuery.post('<?php echo base_url(); ?>app/signup_action', {
 		fullname: fullname,
@@ -72,12 +72,15 @@ function signup() {
 function toggleSubscription() {
 
 	let subscription = document.getElementById("subscription");
+	let sub_value = document.getElementById("sub_value");
 
 	if(subscription.checked == true) {
 		subscription.value = "yes";
 	} else {
 		subscription.value = "no";
 	}
+
+	sub_value.value = subscription.value;
 
 }
 
@@ -152,8 +155,8 @@ function toggleSubscription() {
 			 </div>
 
 			 <ul id="result"></ul>
-			 
-			
+
+			 <input type="hidden" id="sub_value" value="" />			
 
        <div class="form-group">
         <input type="text" name="fullname" id="fullname" placeholder="Full Name">
