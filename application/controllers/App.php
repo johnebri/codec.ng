@@ -47,6 +47,7 @@ class App extends CI_Controller {
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		$subscription = $_POST['subscription'];
+		$role = $_POST['role'];
 
 		$activation_code = random_string('alnum', 25) . time();
 
@@ -69,7 +70,6 @@ class App extends CI_Controller {
 			$clean=false;
 
 		} 
-
 		
 		// check if email is already in use
 		$query = $this->db->get_where('tutors', array("email" => $email));
@@ -96,6 +96,7 @@ class App extends CI_Controller {
 				'email' => $email,
 				'password' => $hashed_password,
 				'subscribe_to_mails' => $subscription,
+				'role' => $role,
 				'activation_code' => $activation_code
 			);
 			$this->db->set('date_time', 'NOW()', FALSE);
@@ -135,6 +136,10 @@ class App extends CI_Controller {
 
 	public function createcourse() {
 		$this->load->view('createcourse');
+	}
+
+	public function getrole() {
+		echo 'getting role';
 	}
 
 

@@ -98,8 +98,14 @@
 
      <div class="auth">
       <div class="auth__buttons">
-       <button class="btn btn-success signup-btn" data-target="#signupModal" data-toggle="modal">Sign Up</button>
-			 <button class="btn text-light login-btn" data-target="#loginModal" data-toggle="modal">Log In</button>
+
+				<a href="#?role=student">
+			 		<button class="btn btn-success signup-btn signupbtn" data-id="student" data-target="#signupModal" data-toggle="modal" >Sign Up</button>	
+				</a>
+			
+			<a href="#?role=student">
+				 <button class="btn text-light login-btn" data-target="#loginModal" data-toggle="modal">Log In</button>
+			</a>
        
        <span class="language">
         <span class="abbriev">en</span>
@@ -234,7 +240,7 @@
        <p class="hero-text">
         <span class="hero__green mr-1">Lorem ipsum dolor</span>sit amet consectetur adipisicing elit. Eligendi, iste.
        </p>
-       <button class="signup__btn btn btn-success px-5 mt-3 py-2" data-target="#signupModal" data-toggle="modal">Sign up now</button>
+       <button class="signup__btn btn btn-success px-5 mt-3 py-2" data-target="#signupModalStudent" data-toggle="modal">Sign up now</button>
       </div>
      </div>
      <div class="col-lg-6 col-sm-12 hero__courses text-center">
@@ -1706,7 +1712,6 @@
 
  <?php include('fragments/modals.php'); ?>
  	
-
  <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>

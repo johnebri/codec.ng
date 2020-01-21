@@ -111,11 +111,16 @@
       <span class="empty-cart text-center">Your cart is empty.</span>
       <a class="dropdown-item text-center nav-link" href="#">Keep shopping </a>
      </div>
-    </div>
-    <button class="btn btn-md btn-outline-secondary btn-login" data-target="#loginModal" data-toggle="modal"
-     type="button">Log In</button>
-    <button class="btn btn-md btn-danger btn-signup" data-target="#signupModal" data-toggle="modal" type="button">Sign
-     Up</button>
+		</div>
+		
+		<a href="#?role=teacher">
+			<button class="btn btn-md btn-outline-secondary btn-login" data-target="#loginModal" data-toggle="modal" type="button">Log In</button>
+		</a>
+
+		 <a href="#?role=teacher">
+    	<button class="btn btn-md btn-danger btn-signup signupbtn" data-id="teacher" data-target="#signupModal" data-toggle="modal" type="button">Sign Up</button>
+		</a>
+
   </nav>
 
 	<?php include('fragments/modals.php'); ?>
@@ -127,8 +132,8 @@
    <div class="hero__body">
     <h1 class="hero__main-text text-light"> Make a global impact</h1>
     <p class="hero__sub-text text-light"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, id.</p>
-    <button class="btn block btn-lg btn-success" data-target="#signupModal" data-toggle="modal"
-    data-dismiss="modal">Become an instructor</button>
+    <a href="#?role=teacher"><button class="btn block btn-lg btn-success" data-target="#signupModal" data-toggle="modal"
+    data-dismiss="modal">Become an instructor</button></a>
    </div>
   </div>
  </section>
@@ -344,7 +349,7 @@
    Lorem ipsum dolor sit amet consectetur adipisicing elit.
   </p>
   <a href="#">
-   <button class="btn btn-lg btn-success" data-target="#signupModal" data-toggle="modal"
+   <button class="btn btn-lg btn-success" data-target="#signupModalTeacher" data-toggle="modal"
    data-dismiss="modal">Get started</button>
   </a>
  </section>
