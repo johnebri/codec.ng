@@ -106,13 +106,18 @@ class App extends CI_Controller {
 			// send mail here
 			$emailObj = new Email();  //create object 
 			
+			// activation link
+			$activationLink = base_url().'activateAccount/'.$activation_code;
+
 			// Email body content
-            $body = "<h1>Welcome to Codac</h1>
-                <p>Click on the button below to activate your account</p>
-                <button>Activate Account</button>";
+            $body = '<h1>Welcome to Codac</h1>
+				<p>Click on the button below to activate your account</p>
+				<a href='.$activationLink.'><button>Activate Account</button></a>';
             
         
-            $response = $emailObj->sendMail($email, "test@codac.pulaakutrade.com", "Codac", "Activate Your Account",  $body); //call function
+			$response = $emailObj->sendMail($email, "test@codac.pulaakutrade.com", "Codac", "Activate Your Account",  $body); 
+			echo '<h1>'.$response.'</h1>';
+//call function
            
 // 				sendMail($to, $from, $from_name, $subject, $body);
 		
@@ -140,6 +145,10 @@ class App extends CI_Controller {
 
 	public function getrole() {
 		echo 'getting role';
+	}
+
+	public function activateAccount($code) {
+		echo 'activate account = ' . $code;
 	}
 
 

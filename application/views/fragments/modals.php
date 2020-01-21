@@ -38,7 +38,7 @@
 
 		const url = window.location.href;
 		var role = url.split("=").pop(); 
-		
+
 		// loading starts
 		let submit_button = document.getElementById('submit_button');
 		let buttonText = document.getElementById('buttonText');
@@ -86,6 +86,44 @@
 		sub_value.value = subscription.value;
 
 	}
+
+	function login() {
+
+	const url = window.location.href;
+	var role = url.split("=").pop(); 
+
+	// loading starts
+	let submit_button = document.getElementById('submit_button');
+	let buttonText = document.getElementById('buttonText');
+	let loader = document.getElementById('loader');
+
+	buttonText.textContent = 'Loading...Please Wait';
+	submit_button.disabled = true;
+	loader.style.display = 'inline';
+
+	let fullname = jQuery('#fullname').val();
+	let email = jQuery('#email').val();
+	let password = jQuery('#password').val();
+	let subscription = jQuery('#sub_value').val();
+
+
+	jQuery.post('<?php echo base_url(); ?>app/signup_action', {
+		fullname: fullname,
+		email: email,
+		password: password,
+		subscription: subscription,
+		role: role
+	},
+	function(data){
+			// list.innerHTML = data;
+			// loading ends
+			buttonText.textContent = 'Sign up';
+			submit_button.disabled = false;
+			loader.style.display = 'none';
+			jQuery('#result').html(data);
+	});
+
+}
 
 </script>
 
