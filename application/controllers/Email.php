@@ -19,14 +19,14 @@ class Email extends CI_Controller{
         $mail->SMTPSecure = 'ssl'; 
         $mail->Host = 'codac.pulaakutrade.com';
         $mail->Port = 465;  
-        $mail->Username = 'test@codac.pulaakutrade.com';
+        $mail->Username = 'codac@pulaakutrade.com';
         $mail->Password = 'CodacTestMail123';   
    
        //   $path = 'reseller.pdf';
        //   $mail->AddAttachment($path);
    
         $mail->IsHTML(true);
-        $mail->From="test@codac.pulaakutrade.com";
+        $mail->From="codac@pulaakutrade.com";
         $mail->FromName=$from_name;
         $mail->Sender=$from;
         $mail->AddReplyTo($from, $from_name);
@@ -36,6 +36,8 @@ class Email extends CI_Controller{
         if(!$mail->Send())
         {
             $response ="Please try Later, Error Occured while Processing...";
+            // echo "Mailer Error: " . $mail->ErrorInfo;
+            // exit();
             return $response; 
         }
         else 

@@ -111,12 +111,12 @@ class App extends CI_Controller {
 
 			// Email body content
             $body = '<h1>Welcome to Codac</h1>
-				<p>Click on the button below to activate your account</p>
-				<a href='.$activationLink.'><button>Activate Account</button></a>';
+				<p>Click on the button to activate your account</p>
+				<a href="'.$activationLink.'"><button>Activate Your Account</button></a>';
             
         
 			$response = $emailObj->sendMail($email, "test@codac.pulaakutrade.com", "Codac", "Activate Your Account",  $body); 
-			echo '<h1>'.$response.'</h1>';
+			// echo '<h1>'.$response.'</h1>';
 //call function
            
 // 				sendMail($to, $from, $from_name, $subject, $body);
@@ -148,7 +148,15 @@ class App extends CI_Controller {
 	}
 
 	public function activateAccount($code) {
-		echo 'activate account = ' . $code;
+		// check code
+		$query = $this->db->get_where('tutors', array('activation_code'=>$code));
+		if($this->db->affected_rows()) {
+			// code found, activate account
+			
+		} else {
+			// code not found
+			echo 'Invalid Activation Code';
+		}
 	}
 
 
