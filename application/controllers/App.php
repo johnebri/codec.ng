@@ -72,7 +72,7 @@ class App extends CI_Controller {
 		} 
 		
 		// check if email is already in use
-		$query = $this->db->get_where('tutors', array("email" => $email));
+		$query = $this->db->get_where('users', array("email" => $email));
 		if($this->db->affected_rows() > 0) {
 
 			// email is already in use
@@ -100,7 +100,7 @@ class App extends CI_Controller {
 				'activation_code' => $activation_code
 			);
 			$this->db->set('date_time', 'NOW()', FALSE);
-			$this->db->insert('tutors', $tutorData);
+			$this->db->insert('users', $tutorData);
 			echo '<div class="success">Your registration was successfull, Check your mail for a confirmation link</li>';
 			
 			// send mail here
@@ -149,10 +149,39 @@ class App extends CI_Controller {
 
 	public function activateAccount($code) {
 		// check code
-		$query = $this->db->get_where('tutors', array('activation_code'=>$code));
+		$query = $this->db->get_where('users', array('activation_code'=>$code));
 		if($this->db->affected_rows()) {
 			// code found, activate account
-			
+			// get user details
+			$result = $query->result_array();
+			foreach($result as $val) {
+				$user_id = $val["user_id"];
+				$activated = $val["activated"];
+			}
+
+			// check if user is already activated
+			if($activated == 1) {
+				// account is already activated
+				echo 'your account is already activated';
+			} else {
+				// account is not activated, activate now
+				$data = array(
+					'activated' => 1
+				);
+				$this->db->set($data);
+				$this->db->where('user_id', $user_id);
+				$this->db->update('users');	
+
+				// check if account activation succeeded
+				if ($this->db->affected_rows() > 0) {
+					// account activation succeeded
+					echo 'account activated successfully';
+				} else {
+					// account activation failed
+					echo 'account activation failed';
+				}
+			}
+
 		} else {
 			// code not found
 			echo 'Invalid Activation Code';
