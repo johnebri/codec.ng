@@ -1,0 +1,51 @@
+ @import "components/navigation";
+ @import "components/hero";
+ @import "components/potential";
+ @import "components/opportunities";
+ @import "components/envision";
+ @import "components/testimonial";
+ @import "components/help";
+ @import "components/instructor";
+ @import "components/footer";
+ @import "components/responsive";
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; 
+}
+
+html {
+  scroll-behavior: smooth;
+  //remove horizontal scroll from body
+  max-width: 100%;
+  overflow-x: hidden;
+  
+}
+
+body {
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, san-serif;
+  position: relative;
+}
+
+p {
+ font-size: 1.1rem;
+}
+
+.main2-heading {
+ font-weight: 300;
+ font-size: 2.4rem;
+}
+
+.opacify{
+ opacity: .8;
+}
+
+.bottom-line {
+  border: 1px solid #288745;
+  width: 45px;
+  margin: 0 auto;
+ }

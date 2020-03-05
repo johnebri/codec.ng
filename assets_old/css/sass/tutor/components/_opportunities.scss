@@ -1,0 +1,34 @@
+.opportunities {
+ width: 100%;
+
+ &__bg {
+  background: #505763 url(../../img/exceptional-opportunity.png) center center no-repeat;
+  background-image: url(../img/exceptional-opportunity.png); 
+  background-size: cover;
+  padding-top: 30px;
+  padding-bottom: 70px;
+ }
+
+ ul {
+  list-style: none;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 180px));
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 0;
+ }
+
+ li {
+  font-size: 3.4rem;
+  display: inline-block;
+
+ }
+
+
+ li>span {
+  font-size: 1.2rem;
+  display: block;
+ }
+}

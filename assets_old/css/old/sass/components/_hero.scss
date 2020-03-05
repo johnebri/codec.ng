@@ -1,0 +1,110 @@
+@import "./variables";
+.hero {
+ width: 100%;
+ color: white;
+
+ &__bg {
+  background: linear-gradient(90deg,#232021 0,$deepblue);
+  padding: 80px 1rem;
+  position: relative;
+ }
+
+ &__header {
+  font-size: 3.5rem;
+ }
+
+ &-text {
+ font-size: 1.1rem;
+ }
+
+ &__green {
+  color: #83c11f;
+ }
+
+ .signup__btn {
+  font-weight: 700;
+  font-size: 1.1rem;
+ }
+
+ &__courses{
+  display: grid;
+  position: absolute;
+  right: 0;
+  top: 20px;
+  justify-content: center;
+
+  &-item {
+   box-sizing: border-box;
+   border-radius: 6px;
+   background: white;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   -ms-border-radius: 6px;
+   -o-border-radius: 6px;
+   cursor: pointer;
+   transition: transform .3s;
+   &:hover{
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+
+   .card {
+    height: 103px;
+    width: 110px;
+
+    &-body {
+     padding: 0;
+     padding-top: 20px;
+    }
+   }
+
+
+   i {
+    display: inline-block;
+    font-size: 2.5rem;
+   }
+}
+
+ }
+ 
+}
+
+//hover effects
+.tech:hover {
+ border-top: 4px solid $deepblue;
+}
+
+.lang:hover {
+ border-top: 4px solid green;
+}
+
+.sci:hover {
+ border-top: 4px solid purple;
+}
+
+.health:hover {
+ border-top: 4px solid red;
+}
+
+.bus:hover {
+ border-top: 4px solid orange;
+}
+
+.math:hover {
+ border-top: 4px solid purple;
+}
+
+.human:hover {
+ border-top: 4px solid greenyellow;
+}
+
+.market:hover {
+ border-top: 4px solid #c81a7f;
+}
+
+.life:hover {
+ border-top: 4px solid #2a0040;
+}

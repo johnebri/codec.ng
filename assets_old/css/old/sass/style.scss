@@ -1,0 +1,41 @@
+@import "components/variables";
+// @import "components/utilities";
+ @import "components/header";
+ @import "components/hero";
+ @import "components/courses";
+ @import "components/counter";
+ @import "components/testimonial";
+ @import "components/learnmore";
+ @import "components/footer";
+ @import "components/animations";
+@import "components/responsive";
+
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; 
+}
+
+html {
+  scroll-behavior: smooth;
+  //remove horizontal scroll from body
+  max-width: 100%;
+  overflow-x: hidden;
+  
+}
+
+body {
+  box-sizing: border-box;
+  //remove horizontal scroll from body
+  max-width: 100%;
+  overflow-x: hidden;
+  font-family: 'Times New Roman', Times, serif;
+  position: relative;
+}
+
+p {
+ font-size: 1.1rem;
+}

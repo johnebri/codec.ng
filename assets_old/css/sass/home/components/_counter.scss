@@ -1,0 +1,32 @@
+.counter {
+ font-size: 2.8rem;
+ font-weight: 700;
+ display: block;
+
+ &-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+ }
+
+ &__bg {
+  background-color: #004fef;
+  padding: 1rem;
+  padding-top: 2.2rem;
+  opacity: .8;
+
+  i {
+   display: block;
+   font-size: 2rem;
+  }
+ }
+ 
+ &__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px , 170px));
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  gap: 20px;
+ }
+
+}

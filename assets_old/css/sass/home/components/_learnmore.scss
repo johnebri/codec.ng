@@ -1,0 +1,22 @@
+.learnmore {
+ background-color: #004fef;
+  padding: 1rem;
+  // padding: 7rem 1rem;
+
+  h2 {
+   font-weight: 400;
+  }
+
+  .support-1,
+  .support-2 {
+   display: flex;
+   flex: 1;
+   justify-content: space-between;
+   opacity: .1;
+  }
+
+  img {
+   width: 20%;
+
+  }
+}

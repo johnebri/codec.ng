@@ -1,0 +1,304 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman', Times, san-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-color: #fafbfc;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: .8;
+}
+
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.logged_in-container {
+  text-align: right;
+}
+
+.logged_in-container .logged_in {
+  position: relative;
+  color: white;
+}
+
+.logged_in-container .logged_in #user {
+  position: relative;
+}
+
+.logged_in-container .logged_in #user i.fa-caret-up {
+  display: none;
+  font-size: 40px;
+  position: absolute;
+  top: 120%;
+  left: 10px;
+  color: #E9EDF1;
+}
+
+.logged_in-container .logged_in aside.user_menu {
+  display: none;
+  background-color: #E9EDF1;
+  color: black;
+  text-align: left;
+  padding: 10px 0;
+  padding-bottom: 0;
+  width: 250px;
+  position: absolute;
+  top: 140%;
+  color: gray;
+}
+
+.logged_in-container .logged_in aside.user_menu .user_details {
+  border-bottom: 1px solid gray;
+  padding: 5px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.logged_in-container .logged_in aside.user_menu .user_details img {
+  width: 60px;
+  height: 60px;
+}
+
+.logged_in-container .logged_in aside.user_menu .user_details p {
+  margin: 0;
+}
+
+.logged_in-container .logged_in aside.user_menu .user_details button {
+  border: none;
+  background-color: #b6b5b5;
+  padding: 3px 20px;
+  font-size: 12px;
+}
+
+.logged_in-container .logged_in aside.user_menu div.actions {
+  padding: 10px 0;
+}
+
+.logged_in-container .logged_in aside.user_menu div.actions p {
+  padding: 10px;
+  margin: 5px 0;
+}
+
+.logged_in-container .logged_in aside.user_menu div.actions p a {
+  color: gray;
+}
+
+.logged_in-container .logged_in aside.user_menu div.actions p i {
+  margin-right: 10px;
+}
+
+.logged_in-container .logged_in aside.user_menu div.actions p:first-child a {
+  color: #004fef;
+}
+
+.logged_in-container .logged_in aside.user_menu div.actions p:first-child:hover a {
+  color: white;
+}
+
+.logged_in-container .logged_in aside.user_menu div.logout {
+  margin-top: -10px;
+  padding-bottom: 0;
+  border-top: 1px solid gray;
+  color: #004fef;
+}
+
+.logged_in-container .logged_in aside.user_menu div.logout p {
+  cursor: pointer;
+  padding: 10px;
+  margin: 0;
+}
+
+.logged_in-container .logged_in aside.user_menu div.logout p i {
+  margin-right: 10px;
+}
+
+.logged_in-container .logged_in aside.user_menu div.logout p:hover {
+  color: white;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+.logged_in-container .logged_in aside.user_menu .actions p:hover,
+.logged_in-container .logged_in aside.user_menu .logout p:hover {
+  background-color: #004fef;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+.logged_in-container .logged_in aside.user_menu .actions p:hover a,
+.logged_in-container .logged_in aside.user_menu .logout p:hover a {
+  color: white;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  opacity: 1;
+}
+
+.logged_in-container .logged_in img {
+  width: 40px;
+  height: 40px;
+  margin-top: -5px;
+}
+
+.logged_in-container .logged_in span {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: grey;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+}
+
+.logged_in-container .logged_in span i {
+  font-size: 20px;
+}
+
+.logged_in-container .logged_in span .badge {
+  position: absolute;
+  top: -5px;
+  right: -15px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: darkblue;
+  overflow: hidden;
+}
+
+.logged_in-container .logged_in span img {
+  display: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: -30px;
+}
+
+.logged_in-container .logged_in .cart,
+.logged_in-container .logged_in .ribbon {
+  display: none;
+}
+
+.logged_in-container .logged_in img,
+.logged_in-container .logged_in span {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.logged_in-container .logged_in .language {
+  background-color: white !important;
+  color: grey;
+}
+
+.logged_in-container .logged_in .language .badge {
+  color: white;
+}
+
+.logged_in-container .logged_in .language:hover {
+  background-color: #004fef !important;
+  color: white;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.logged_in-container .logged_in .language:hover img {
+  display: block !important;
+}
+
+.mobile-login span {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: grey;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+}
+
+.mobile-login span .badge {
+  position: absolute;
+  top: -5px;
+  right: -15px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: darkblue;
+}
+
+.mobile-login img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 20px;
+  margin-top: -5px;
+}
+
+@media screen and (min-width: 1280px) {
+  .logged_in-container .logged_in {
+    -ms-flex-item-align: right !important;
+        -ms-grid-row-align: right !important;
+        align-self: right !important;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+  }
+  .logged_in-container .logged_in .cart,
+  .logged_in-container .logged_in .ribbon {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+  }
+}
+/*# sourceMappingURL=user_home.css.map */

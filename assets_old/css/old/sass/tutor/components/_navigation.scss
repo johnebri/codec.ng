@@ -1,0 +1,290 @@
+.navs {
+ width: 100%;
+ background-color: white;
+
+ &__mobile {
+  display: none;
+  width: 99%;
+  padding: 1rem .7rem;
+  margin: 0 auto;
+  align-items: center;
+
+  &-icon {
+   width: 70px;
+  }
+
+  .dropdown-menu {
+   margin-top: 44px;
+  }
+
+  &-logo {
+   img {
+    width: 60px;
+   }
+   width: calc(100% - 110px);
+   text-align: center;
+   font-size: 1.5rem;
+   a {
+    text-decoration: none;
+    color: black;
+   }
+  }
+
+  &-cart {
+   width: 40px;
+   text-align: right;
+  }
+
+  .fa,.fas {
+   font-size: 1.3rem;
+  }
+
+  .fa-search {
+   padding-left: 20px;
+  }
+ }
+
+ &__desktop {
+  padding: .5rem .6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+ &-logo {
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+ }
+  
+  img {
+   width: 70px;
+  }
+
+  &-logo {
+   width: 190px;
+  }
+
+  .cart_button {
+   text-align: right;
+   width: 220px;
+  }
+
+.searchform {
+   width: calc(100% - 400px); 
+   margin-left: 30px;
+
+   input {
+    width: calc(100% - 50px);
+    height: 44px;
+    padding: 10px 12px;
+    font-size: 16px;
+    color: #29303b;
+    background-color: #fff;
+    background-image: none;
+    border: none;
+    background: lighten(#8a92a3,35%);
+    border-radius: 2px;
+    box-shadow: none;
+   }
+
+   .btn {
+    width: 40px;
+    height: 44px;
+    padding: 10px 12px;
+    background: lighten(#8a92a3,35%);
+
+    &:hover {
+     background: #317036;
+    }
+
+    &:hover .fas {
+     color: white;
+    }
+
+    .fas {
+     color: #317036;
+    }
+   }
+  }
+ }
+
+}
+
+.modal-body {
+
+ .fa {
+  margin-right: 10px;
+  font-size: 1.5rem;
+ }
+ 
+ .fa-google {
+  color: red;
+ }
+
+ .form-group {
+  width: 100%;
+
+  input:not([type="submit"]) {
+   height: 44px;
+   padding: 10px 12px;
+   width: 100%;
+   font-size: 16px;
+   color: #29303b;
+   background-color: #fff;
+   background-image: none;
+   border-radius: 2px;
+   box-shadow: none;
+   border: 1px solid #317036;
+  }
+ }
+}
+
+.modal-footer {
+ display: block;
+
+ p {
+  width: 100%;
+  text-align: center;
+ }
+}
+
+.forgot-footer {
+ text-align: center;
+
+ span {
+  vertical-align: middle;
+  font-size: 1.2rem;
+ }
+
+ a {
+  font-size: 1.2rem;
+ }
+}
+
+.btn {
+ border-radius: 0;
+ -webkit-border-radius: 0;
+ -moz-border-radius: 0;
+ -ms-border-radius: 0;
+ -o-border-radius: 0;
+}
+
+.dropdown-menu {
+ margin-top: 20px;
+ width: 200px;
+
+span,
+a{
+ display: block;
+ width: 100%;
+}
+
+a{
+ color: #007bff;
+}
+
+}
+
+
+.sidenav {
+ height: 100%; /* 100% Full-height */
+ width: 0; /* 0 width - change this with JavaScript */
+ position: fixed; /* Stay in place */
+ z-index: 1; /* Stay on top */
+ top: 0; /* Stay at the top */
+ left: 0;
+ background-color: white; /* Black*/
+ overflow-x: hidden; /* Disable horizontal scroll */
+ padding-top: 60px; /* Place content 60px from the top */
+ transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+ padding: 8px 8px 8px 32px;
+ text-decoration: none;
+ font-size: 1.1rem;
+ color: #818181;
+ display: block;
+ transition: 0.3s;
+}
+
+.sidenav a:hover {
+ color: #007bff;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+ position: absolute;
+ top: 0;
+ right: 25px;
+ font-size: 36px;
+ margin-left: 50px;
+}
+
+.nav-blue {
+ color: #007bff !important;
+}
+
+// DROP SEARCH
+.search-drop {
+ width: 100% !important;
+ height: 0; /* 100% Full-height */
+ position: fixed; /* Stay in place */
+ z-index: 1; /* Stay on top */
+ top: 0; /* Stay at the top */
+ left: 0;
+ background-color: white; /* Black*/
+ overflow-x: hidden; /* Disable horizontal scroll */
+ transition: 0.5s; 
+ cursor: pointer;
+ 
+ .input-group {
+  display: flex;
+  align-items: center;
+  box-shadow: 2px 4px 5px .1px gainsboro;
+
+ }
+
+  input {
+   width: calc(100% - 80px);
+   height: 44px;
+   padding: 10px 12px;
+   font-size: 16px;
+   color: #29303b;
+   background-color: #fff;
+   background-image: none;
+   border: none;
+   background: white;
+   border-radius: 2px;
+   box-shadow: none;
+
+   &:focus {
+    outline: none;
+   }
+  }
+
+  .close-form {
+   width: 40px;
+   text-align: center;
+  }
+
+  .btn {
+   width: 40px;
+   height: 44px;
+   padding: 10px 12px;
+   background: white;
+
+   &:hover {
+    background: #317036;
+   }
+
+   &:hover .fas {
+    color: white;
+   }
+
+   .fas {
+    color: #317036;
+   }
+  }
+ }

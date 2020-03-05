@@ -1,0 +1,57 @@
+.envision {
+overflow-x: hidden;
+
+  &__line {
+    border: 1px solid rgba(41, 48, 59, 0.25);
+    width: 100px;
+  }
+
+}
+
+.envision__body {
+ padding-top: 30px;
+
+ &-icon {
+   display: flex; 
+   width: 100%;
+   justify-content: center;
+   align-items: center;
+
+   &-1,
+   &-2,
+   &-3 {
+     width: 260px;
+     p {
+       font-weight: bold;
+       font-size: 1.2rem;
+     }
+
+     .fas {
+       font-size: 2.2rem;
+     }
+   }
+ }
+ 
+ &-content {
+  text-align: left;
+  padding-left: 100px;
+ }
+
+ h5 {
+  font-weight: bold;
+  font-size: 1.3rem;
+ }
+
+ &-image {
+  padding-left: 30px;
+  padding-right: 30px;
+  img {
+   margin-left: auto;
+   margin-right: auto;
+   max-width: 100%;
+   width: 450px;
+   height: 450px;
+   object-fit: cover;
+  }
+ }
+}

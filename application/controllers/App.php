@@ -7,14 +7,12 @@ class App extends CI_Controller {
 	{
 		parent::__construct();
 		//$this->load->model('mapp');
-		// $this->load->library('session');
+		$this->load->library('session');
 		$this->load->helpers('url');
 		$this->load->database();
 		$this->load->helper('string');
 		
-		require_once(APPPATH.'controllers/Email.php'); //include Email controller
-
-		
+		require_once(APPPATH.'controllers/Email.php'); //include Email controller	
 
 		// if (password_verify("john", $hashed)) {
 		// 	echo 'match';
@@ -176,9 +174,11 @@ class App extends CI_Controller {
 				if ($this->db->affected_rows() > 0) {
 					// account activation succeeded
 					echo 'account activated successfully';
+					// log user in
 				} else {
 					// account activation failed
 					echo 'account activation failed';
+					// show activation error page
 				}
 			}
 
@@ -186,6 +186,85 @@ class App extends CI_Controller {
 			// code not found
 			echo 'Invalid Activation Code';
 		}
+	}
+
+	public function loginAction() {
+
+		$clean = true;
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+		$selectedRole = $_POST['role'];
+
+		if($email == "") {
+			echo '<li class="error">Email field is mandatory </li>';
+			$clean = false;
+		}
+
+		if($password == "") {
+			echo '<li class="error">Password field is mandatory </li>';
+			$clean = false;
+		}		
+
+		if($clean == true) {		
+
+			// check if email exist
+			$query = $this->db->get_where('users', array("email" => $email));
+			if($this->db->affected_rows() > 0) {
+				// user found, get user details
+				$res = $query->result_array();
+				foreach($res as $val) {
+					$hashedPassword = $val['password'];
+					$activated = $val["activated"]; 
+					$userId = $val['user_id'];
+					$role = $val['role'];
+					$fullname = $val["fullname"];
+				}
+
+				if($selectedRole != $role) {
+					echo '<li class="error">You do not have access to login as a trainer</li>';
+					return false;
+				}
+
+				if (password_verify($password, $hashedPassword)) {
+					// password match
+					// check if account is activated
+					if($activated == 1) {
+						// login user
+						
+						$userData = array(
+							"userId" => $userId,
+							"fullname" => $fullname,
+							"email" => $email,
+							"role" => $role
+						);
+						$this->session->set_userdata($userData);
+
+						if($role == 'student') {
+							echo '<script>window.location.href = "'.base_url().'studentdashboard"</script>';
+						} else if ($role == 'teacher') {
+							echo '<script>window.location.href = "'.base_url().'dashboard"</script>';
+						}					
+
+					} else {
+						// account is not active
+						echo '<li class="error">Your account has not been activated</li>';
+					}
+				} else {
+					// wrong password
+					echo '<li class="error">Incorrect username or password</li>';
+				}
+				
+			} else {
+				// wrong email
+				echo '<li class="error">Incorrect username or password</li>';
+			}
+		}
+
+
+	}
+
+	public function studentdashboard() {
+		$this->load->view('studentdashboard');
 	}
 
 

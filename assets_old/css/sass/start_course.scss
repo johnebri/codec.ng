@@ -1,0 +1,49 @@
+@import "components/config";
+@import "components/start_course/sidebar";
+@import "components/start_course/row1";
+@import "components/start_course/row2";
+
+main {
+    .main_content {
+      .advert{
+        border: 1px solid gray;
+        height: 300px;
+        min-width: 300px;
+        max-width: 1000px;
+        margin: 30px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        iframe{
+          width: 400px;
+          height: 300px;
+        }
+      }
+
+    }
+  }
+  @media screen and(min-width: 992px){
+    .Content{
+      display: grid;
+      grid-template-columns: 2fr 10fr;
+  
+      .sidebar{
+        position: static;
+      }
+      .main_content{
+        padding:0  30px;
+        margin-right: 20%;
+      }
+    }
+  }
+
+
+// Javascript class related functions
+.show_sidebar {
+  left: 0 !important;
+}
+.display_flex {
+  display: flex !important;
+}
+//ends here

@@ -52,7 +52,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'app';
 
 $route['tutors'] = 'app/tutors';
+
 $route['dashboard'] = 'app/dashboard';
+$route['studentdashboard'] = 'app/studentdashboard';
+
 $route['createcourse'] = 'app/createcourse';
 $route['course'] = 'app/course';
 $route['user_home'] = 'app/user_home';

@@ -1,0 +1,66 @@
+.bottom-footer {
+ padding: 1rem .9rem;
+ margin-top: 30px;
+ padding-bottom: 1.1rem;
+ border-bottom: 5px solid #317036;
+}
+
+.footer  {
+ width: 100%;
+
+ ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  a {
+   color: gray;
+   font-size: .9rem;
+  }
+ }
+
+ &__links{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+ }
+}
+
+.companies {
+ p{
+  font-size: 1.1rem;
+ }
+ span {
+  font-size: 1.2rem;
+ }
+}
+
+.copyright {
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+
+ img {
+  width: 50px;
+ }
+
+ &__links {
+  display: flex;
+ }
+}
+
+.lang {
+ outline: 1px solid black;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ height: 30px;
+ padding: .4rem .7rem;
+ width: 130px;
+
+ .fas {
+  font-size: .9rem;
+ }
+
+}

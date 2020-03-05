@@ -1,0 +1,26 @@
+$brand_color: #004fef;
+$bg_color: hsl(0, 0%, 100%);
+$body_color:rgb(250, 251, 252); 
+$gb_color: #E9EDF1;
+$txt: black;
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, san-serif;
+    box-sizing: border-box;
+}
+body {
+    background-color: $body_color ;
+    overflow-x: hidden;
+}
+
+a{
+    text-decoration: none;
+}
+a:hover{
+    opacity: .8;
+}
+img{
+    object-fit: cover;
+}

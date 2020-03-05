@@ -1,0 +1,39 @@
+.hero {
+
+ &__bg {
+   background-image: url(../../img/header-image2.jpg);
+   background-image: url(../img/header-image2.jpg);
+   background-position: right center;
+   background-size: cover;
+   background-repeat: no-repeat;
+    padding-top: 120px;
+    padding-bottom: 120px;
+ }
+
+ &__body {
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  .btn {
+   border-radius: 0;
+   -webkit-border-radius: 0;
+   -moz-border-radius: 0;
+   -ms-border-radius: 0;
+   -o-border-radius: 0;
+   margin-top: 1.4rem;
+   padding-top: 10px;
+   padding-bottom: 10px;
+}
+ }
+
+ &__main-text {
+  font-size: 3rem;
+}
+
+&__sub-text {
+ font-size: 1.2rem;
+ width: 400px;
+}
+
+
+}

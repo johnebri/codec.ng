@@ -1,0 +1,155 @@
+@media (max-width: 790px) {
+  .hero {
+    &__bg {
+      padding-top: 170px;
+      padding-bottom: 20px;
+    }
+
+    &__main-text {
+      font-size: 2rem;
+    }
+
+    &__sub-text {
+      font-size: 1.1rem;
+      width: 80%;
+    }
+
+    .btn {
+      width: 100%;
+      margin-top: 1.3rem;
+    }
+  }
+
+  .navs__mobile {
+   display: block !important;
+   display: flex !important;
+  }
+
+  .navs__desktop {
+   display: none;
+  }
+  
+  .instructor {
+   padding-left: .8rem;
+   padding-right: .8rem;
+   .btn{
+    width: 100%;
+   }
+  }
+
+  .potential {
+    &__details {
+      flex-direction: column;
+      width: 90%;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin: 0 auto;
+    }
+
+    &__text {
+     margin: auto;
+      margin-bottom: 20px;
+    }
+  }
+
+  .main2-heading {
+    font-size: 1.7rem !important;
+  }
+
+  .footer {
+   &__links-1 {
+    display: none;
+   }
+   &__links-2 {
+    display: none;
+   }
+   &__links-3 {
+    display: none;
+   }
+  }
+
+  .copyright {
+   align-items: normal;
+   flex-direction: column;
+
+   &__links {
+    padding-left: 70px !important;
+   }
+  }
+}
+
+@media (max-width: 600px) {
+  .opportunities {
+    ul {
+      grid-template-columns: repeat(auto-fit, minmax(110px, 120px));
+      gap: 20px;
+      li {
+        font-size: 2.5rem !important;
+
+        li > span {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 899px) {
+  .envision {
+    .envision__body {
+     &-content {
+      padding: 0;
+     }
+
+      margin-top: -45px;
+      padding-top: 0px;
+      &-icon {
+        display: none;
+      }
+
+      &-image {
+       display: none;
+     }
+    }
+  }
+}
+
+@media (max-width: 780px) {
+  .envision {
+    .envision__body {
+      &-content {
+        text-align: left;
+        padding-left: 40px;
+        padding-right: 50px;
+      }
+    
+    }
+  }
+}
+
+@media (max-width: 830px) {
+.card-columns {
+ -webkit-column-count: 1; 
+ -moz-column-count: 1;
+ column-count: 1;
+ -webkit-column-gap: 1.25rem;
+ -moz-column-gap: 1.25rem;
+ column-gap: 1.25rem;
+ orphans: 1;
+ widows: 1;
+}
+
+.help {
+ &__text {
+  padding: 0 80px;
+ }
+}
+}
+
+@media (max-width: 590px) {
+.help {
+ &__text {
+  padding: 0 20px;
+ }
+}
+}

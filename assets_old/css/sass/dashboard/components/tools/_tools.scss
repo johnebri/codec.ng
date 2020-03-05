@@ -1,0 +1,16 @@
+.tools {
+ margin: auto;
+ padding-top: 10px;
+ width: calc(100% - 44px);
+ text-align: center;
+
+ i {
+  font-size: 3rem;
+ }
+
+ .card-box {
+  width: 600px;
+  display: flex;
+ }
+
+}
