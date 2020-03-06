@@ -267,6 +267,28 @@ class App extends CI_Controller {
 		$this->load->view('studentdashboard');
 	}
 
+	public function logout() {
+		
+		if( $this->session->userdata('role') == 'student' ) {
+			$page = 'student';
+		} else if( $this->session->userdata('role') == 'teacher' ) {
+			$page = 'teacher';
+		}
+
+		$this->session->unset_userdata('fullname');
+		$this->session->unset_userdata('email');
+		$this->session->unset_userdata('user_id');
+		$this->session->unset_userdata('role');
+		$this->session->sess_destroy();
+
+		if($page == 'student') {
+			redirect(base_url());
+		} else if ($page == 'teacher') {
+			redirect(base_url() .'tutors');
+		}
+		
+	}
+
 
 
 } // end of app controller

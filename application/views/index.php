@@ -221,7 +221,8 @@
 
      <li class="toggle__nav-item"><a class="toggle__nav-link" href="#">Cerficate Course</a></li>
      <li class="toggle__nav-item"><a class="toggle__nav-link" href="#">Diploma Course</a></li>
-     <li class="toggle__nav-item"><a class="toggle__nav-link" href="#">Courses for Jobs</a></li>
+		 <li class="toggle__nav-item"><a class="toggle__nav-link" href="#">Courses for Jobs</a></li>
+		 <li class="toggle__nav-item"><a class="toggle__nav-link" href="<?php echo base_url(); ?>tutors">Instructors</a></li>
      <li class="toggle__nav-item"><a class="toggle__nav-link" href="#">Help</a></li>
 
     </ul>

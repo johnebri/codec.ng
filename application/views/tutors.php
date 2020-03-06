@@ -40,8 +40,8 @@
 
  <!-- SIDE NAVIGATION -->
  <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#" data-target="#signupModal" data-toggle="modal" data-dismiss="modal" class="nav-blue"> Sign up / Log in</a>
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#?role=teacher" data-target="#signupModal" data-toggle="modal" data-dismiss="modal" class="nav-blue"> Sign up / Log in</a>
         <hr>
   <a href="#">Web Delopment</a>
   <a href="#">Mobile Apps</a>

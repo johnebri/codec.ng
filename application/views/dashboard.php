@@ -83,7 +83,7 @@
        <span class="badge badge-danger">3</span>
       </li>
       <li class="list-group-item">
-       <a href="#">Log out</a>
+       <a href="<?php echo base_url(); ?>logout">Log out</a>
       </li>
      </div>
     
@@ -126,7 +126,7 @@
         <a href="#">Payout Settings</a>
        </li>
        <li class="list-group-item">
-        <a href="#">Log out</a>
+				<a href="<?php echo base_url(); ?>logout">Log out</a>
        </li>
       </div>
      </div>

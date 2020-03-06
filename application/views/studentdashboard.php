@@ -175,7 +175,7 @@
 			<p><a href="#"><i class="fa fa-user"></i>My Dashboard</a></p>
 			<p><a href="#"><i class="fa fa-cog"></i>Account Settings</a></p>
 			<p><a href="#"><i class="fa fa-question-circle"></i>Help</a></p>
-			<p><i class="fa fa-power-off"></i>Logout</p>
+			<p><i class="fa fa-power-off"></i><a href="<?php echo base_url(); ?>logout">Logout</a></p>
 		</div>
 	</aside>
 	<!-- DASHBOARD SECTION -->
