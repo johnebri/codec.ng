@@ -64,6 +64,8 @@ $route['activateAccount'] = 'app/activateAccount';
 
 $route['logout'] = 'app/logout';
 
+
+
 // $route['view/(.+)'] = 'Tickets/viewTicket/$1';
 // $route['admin/profile/(:any)'] = 'AdminControllers/Customers/profile/$1';
 $route['activateAccount/(:any)'] = 'app/activateAccount/$1';
