@@ -57,12 +57,18 @@ $route['dashboard'] = 'app/dashboard';
 $route['studentdashboard'] = 'app/studentdashboard';
 
 $route['createcourse'] = 'app/createcourse';
-$route['course'] = 'app/course';
+$route['course/(:any)'] = 'app/course/$1';
+$route['commentOnCourse'] = 'app/commentOnCourse';
 $route['user_home'] = 'app/user_home';
 
 $route['activateAccount'] = 'app/activateAccount';
 
 $route['logout'] = 'app/logout';
+
+$route['createCourseAction'] = 'app/createCourseAction';
+
+
+
 
 // $route['view/(.+)'] = 'Tickets/viewTicket/$1';
 // $route['admin/profile/(:any)'] = 'AdminControllers/Customers/profile/$1';

@@ -190,7 +190,7 @@
       <i class="fa fa-sticky-note-o text-primary mr-4" aria-hidden="true"></i>
       <h3>Jump Into Course Creation</h3>
      </span>
-     <a href="createcourse.html">
+     <a href="<?php echo base_url(); ?>createcourse">
       <button class="btn btn-lg btn__button">Create Your Course</button>
      </a>
     </div>

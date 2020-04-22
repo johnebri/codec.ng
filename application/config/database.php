@@ -79,10 +79,17 @@ $db['default'] = array(
 	// 'username' => 'xa24wlNeg6',
 	// 'password' => 'NP5TVkUnKe',
 	// 'database' => 'xa24wlNeg6',
+	
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
 	'database' => 'codac',
+	
+	// 'hostname' => 'localhost:3306',
+	// 'username' => 'pulaakut_superAdmin',
+	// 'password' => 'SuperAdmin*123',
+	// 'database' => 'pulaakut_codac',
+	
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

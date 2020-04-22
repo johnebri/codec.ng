@@ -355,11 +355,26 @@
 
             <!-- MAIN CONTENT -->
             <div class="main_content">
+
+                <?php
+                    if(isset($_GET['success'])) {
+                        echo '<h4 style="margin-top: 15px; color: green;">Comment added successfully</h4>';
+                    } 
+                    if(isset($_GET['error'])) {
+                        echo '<h4 style="margin-top: 15px; color: red;">There was an error.</h4>';
+                    } 
+
+                ?>
+                
                 <section class="advert adv1">
                     <section class="video_container">
                         <div class="video_item">
-                            <iframe src="https://www.youtube.com/embed/5j46WgqUwCQ" frameborder="0"
-                                class="video"></iframe>
+                            <!-- <iframe src="https://www.youtube.com/embed/5j46WgqUwCQ" frameborder="0"
+                                class="video"></iframe> -->
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $videoUrl; ?>" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen></iframe>
                         </div>
                     </section>
                 </section>
@@ -426,28 +441,67 @@
                                     <p>User Name here</p>
                                 </div>
                                 <div class="form_group">
-                                    <form action="">
+                                    <form method="post" action="<?php echo base_url(); ?>commentOnCourse">
+                                        <input type="hidden" name="courseId" value="<?php echo $courseId; ?>">
                                         <input type="text" name="comment" id="comment"
-                                            placeholder="Discuss this topic here...">
+                                            placeholder="Discuss this topic here..." required>
                                         <input type="submit" value="Submit Comment" id="submit">
                                     </form>
                                 </div>
                             </aside>
                             <aside class="two">
                                 <p>or, if you need Customer Support, <a href="#">click here</a></p>
-                                <div>
-                                    <article class="comment_img">
-                                        <img src="<?php echo base_url(); ?>assets/img/user.png" alt="">
-                                    </article>
-                                    <article>
-                                        <p><img src="<?php echo base_url(); ?>assets/img/south africa flag.jpg" alt=""> <span>Edhcga T.</span></p>
-                                        <p>
-                                            <a href=""><i class="fa fa-thumbs-up"></i>20</a>
-                                            <a href=""><i class="fa fa-thumbs-down"></i>1</a>
-                                        </p>
-                                        <p>Nice course</p>
-                                    </article>
-                                </div>
+
+                                <?php
+                                    // $query = $this->db->get_where('course_comments', array('course_id' => $courseId)); 
+
+                                    $query = $this->db->query("
+                                        SELECT *
+                                        FROM course_comments WHERE course_id = $courseId
+                                        ORDER BY comment_id DESC
+                                    ");
+
+                                    $noOfComments = $this->db->affected_rows();
+                                    if($noOfComments > 0) {
+                                        // there are comments
+                                        $commentRes = $query->result_array();
+                                        foreach($commentRes as $comment) {
+                                            // get user name
+                                            $userQuery = $this->db->get_where('users', array('user_id' => $comment['user_id']));
+                                            $userCount = $this->db->affected_rows();
+                                            if($userCount > 0) {
+                                                // user found
+                                                $userRes = $userQuery->result_array();
+                                                foreach($userRes as $user) {
+                                                    $fullname = $user['fullname'];
+                                                }
+                                            } else {
+                                                // no user found
+                                            }
+                                            echo '
+                                                <div style="margin-bottom:8px;">
+                                                <article class="comment_img">
+                                                    <img src="'.base_url().'assets/img/user.png" alt="">
+                                                </article>
+                                                <article>
+                                                    <p><img src="<?php echo base_url(); ?>assets/img/south africa flag.jpg" alt=""> <span></span></p>
+                                                    <p>
+                                                        <a href=""><i class="fa fa-thumbs-up"></i>20</a>
+                                                        <a href=""><i class="fa fa-thumbs-down"></i>1</a>
+                                                    </p>
+                                                    <p>'.$comment['comment'].'</p>
+                                                </article>
+                                            </div>
+                                            ';
+                                        }
+                                    } else {
+                                        // no comments
+                                    }
+                                   
+                                ?>
+
+                               
+
                             </aside>
                         </div>
                     </div>

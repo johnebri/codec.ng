@@ -39,22 +39,37 @@
     </a>
     </span>
    </div>
+   
   </section>
 
 <section class="courseupload">
 <h2>Upload a course</h2>
+<p><a href="<?php echo base_url(); ?>dashboard"><button>Back to Dashboard</button></a></p>
 
-<form class="mt-5 form">
+<form class="mt-5 form" method="post" action="<?php echo base_url(); ?>createCourseAction">
+
+<?php
+  if(isset($_GET['success'])) {
+    echo '<h3 style="color:green">Course Created Successfully</h3>';
+  }
+  if(isset($_GET['error'])) {
+    echo '<h3 style="color:red">There was an error. Please try again</h3>';
+  }
+?>
+ <!-- <div class="form-group">
+   <input type="file" class="p-3 form-control-file" name="courseFile" id="exampleFormControlFile1" required>
+ </div> -->
  <div class="form-group">
-   <input type="file" class="p-3 form-control-file" id="exampleFormControlFile1">
+  <label for="title">Video URL</label>
+   <input type="url" name="videoUrl" id="videoUrl" class="form-control form-control-lg" required>
  </div>
  <div class="form-group">
   <label for="title">Course Title</label>
-   <input type="text" name="title" id="title" class="form-control form-control-lg">
+   <input type="text" name="title" id="title" class="form-control form-control-lg" required>
  </div>
  <div class="form-group">
   <label for="description">Course Description</label>
-  <textarea class="form-control" name="description" id="description" placeholder="Write about course..."></textarea>
+  <textarea class="form-control" name="description" id="description" placeholder="Write about course..." required></textarea>
  </div>
  <input type="submit" value="Upload Course" class="py-3 btn btn-lg btn-block btn-outline-success">
 </form>

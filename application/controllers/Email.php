@@ -11,7 +11,7 @@ class Email extends CI_Controller{
         
     function sendMail($to, $from, $from_name, $subject, $body)
     {
-        require_once(APPPATH.'libraries/PHPMailer/PHPMailerAutoload.php');
+        require_once(APPPATH.'librariesemail/PHPMailer/PHPMailerAutoload.php');
         $mail = new PHPMailer();
         $mail->IsSMTP();
         $mail->SMTPAuth = true; 
@@ -19,8 +19,8 @@ class Email extends CI_Controller{
         $mail->SMTPSecure = 'ssl'; 
         $mail->Host = 'codac.pulaakutrade.com';
         $mail->Port = 465;  
-        $mail->Username = 'codac@pulaakutrade.com';
-        $mail->Password = 'CodacTestMail123';   
+        $mail->Username = 'donotreply@codac.pulaakutrade.com';
+        $mail->Password = 'SuperAdmin**123';   
    
        //   $path = 'reseller.pdf';
        //   $mail->AddAttachment($path);
@@ -36,8 +36,8 @@ class Email extends CI_Controller{
         if(!$mail->Send())
         {
             $response ="Please try Later, Error Occured while Processing...";
-            // echo "Mailer Error: " . $mail->ErrorInfo;
-            // exit();
+            echo "Mailer Error: " . $mail->ErrorInfo;
+            exit();
             return $response; 
         }
         else 

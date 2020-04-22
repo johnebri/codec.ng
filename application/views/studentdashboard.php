@@ -164,7 +164,7 @@
 		<div class="user_details">
 			<img src="<?php echo base_url(); ?>assets/img/user.png" alt="">
 			<div class="user_btn">
-				<p class="name"><?php echo $this->session->userdata('fullname'); ?></p>
+				<p class="name"><?php echo $this->input->cookie('fullname',true); ?></p>
 				<a href="#">
 					<button class="btn btn-danger">View Profile</button>
 				</a>
@@ -199,7 +199,7 @@
 
 					<div class="dashboard__info-name mt-1">
 						<h2 class="firstname">
-							<?php echo $this->session->userdata('fullname'); ?>
+							<?php echo $this->input->cookie('fullname',true); ?>
 						</h2>
 						<h2 class="lastname">
 							<!-- Iredokun -->

@@ -26,7 +26,7 @@
  <meta name="twitter:description"
   content="E-learning site, where registered students learn there favourite courses at their own pace">
  <meta name="twitter:image" content="">
- 
+
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -100,13 +100,13 @@
       <div class="auth__buttons">
 
 				<a href="#?role=student">
-			 		<button class="btn btn-success signup-btn signupbtn" data-id="student" data-target="#signupModal" data-toggle="modal" >Sign Up</button>	
+			 		<button class="btn btn-success signup-btn signupbtn" data-id="student" data-target="#signupModal" data-toggle="modal" >Sign Up</button>
 				</a>
-			
+
 			<a href="#?role=student">
 				 <button class="btn text-light login-btn" data-target="#loginModal" data-toggle="modal">Log In</button>
 			</a>
-       
+
        <span class="language">
         <span class="abbriev">en</span>
         <i class="fa fa-globe" aria-hidden="true"></i>
@@ -114,7 +114,7 @@
       </div>
      </div>
     </div>
-  
+
      <!-- LANGUAGE DROPDOWN -->
      <div class="language__globe">
       <ul>
@@ -190,7 +190,7 @@
     </span>
    </div>
    <div class="dropdown-2">
-    <span> 
+    <span>
      <a href="#"><i class="fa fa-certificate" aria-hidden="true"></i>
      </a>
      <p class="hero__courses-text text-dark"> Certificate Courses</p>
@@ -357,37 +357,57 @@
      <div class="tab-pane fade show active" id="trending" role="tabpanel" aria-labelledby="trending-tab">
       <div class="container-fluid">
        <div class="row mb-4">
-        <div class="courses-item-1">
-         <div class="card">
-          <img src="https://source.unsplash.com/Oalh2MojUuk/250x160" class="img-fluid">
-          <div class="card-body">
-           <div class="card-buttons text-left">
-            <span class="badge badge-dark">Diploma</span>
-            <span class="badge badge-danger">Marketing</span>
-           </div>
-           <p class="card-text mt-3 mb-5">Lorem Ipsum Dolor.</p>
-           <a href="#" class="btn btn-md px-5 btn-primary mt-3">Start Now</a>
-          </div>
-         </div>
-         <div class="card2">
-          <span class="courses-social-icons">
-           <i class="fa fa-heart icon-item" aria-hidden="true"></i>
-           <i class="fa fa-facebook icon-item" aria-hidden="true"></i>
-           <i class="fa fa-twitter icon-item" aria-hidden="true"></i>
-           <i class="fa fa-linkedin icon-item" aria-hidden="true"></i>
-          </span>
-          <div class="card-body">
-           <h5 class="card-title h6">Diploma in Marketing</h5>
-           <h5 class="card-title h6 mt-4"> <i class="fa fa-home" aria-hidden="true"></i> Lorem Ipsum</h5>
-           <p class="card-text small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex corrupti veritatis
-            placeat? Commodi, dolorem consequatur.</p>
-           <a href="#" class="nav-link">More Information <i class="ml-1 fa fa-question question"
-             aria-hidden="true"></i></a>
 
-          </div>
-         </div>
-        </div>
-        <div class="courses-item-1">
+      <?php
+        $query = $this->db->get('courses');
+        $query = $this->db->query("
+            SELECT *
+            FROM courses ORDER BY course_id DESC
+        ");
+        $count = $this->db->affected_rows();
+        if($count > 0) {
+          $res = $query->result_array();
+          foreach($res as $course) {
+          echo '
+
+            <div class="courses-item-1">
+              <div class="card">
+                <img src="https://source.unsplash.com/Oalh2MojUuk/250x160" class="img-fluid">
+                <div class="card-body">
+                <div class="card-buttons text-left">
+                  <span class="badge badge-dark"></span>
+                  <span class="badge badge-danger"></span>
+                </div>
+                <p class="card-text mt-3 mb-5">'.$course['course_title'].'</p>
+                <a href="'.base_url().'course/'.$course['course_id'].'" class="btn btn-md px-5 btn-primary mt-3">Start Now</a>
+                </div>
+              </div>
+              <div class="card2">
+                <span class="courses-social-icons">
+                <i class="fa fa-heart icon-item" aria-hidden="true"></i>
+                <i class="fa fa-facebook icon-item" aria-hidden="true"></i>
+                <i class="fa fa-twitter icon-item" aria-hidden="true"></i>
+                <i class="fa fa-linkedin icon-item" aria-hidden="true"></i>
+                </span>
+                <div class="card-body">
+                <h5 class="card-title h6">Course Description</h5>
+                <h5 class="card-title h6 mt-4"> <i class="fa fa-home" aria-hidden="true"></i>'.$course['course_title'].'</h5>
+                <p class="card-text small">'.$course['course_description'].'</p>
+                <a href="#" class="nav-link">More Information <i class="ml-1 fa fa-question question"
+                  aria-hidden="true"></i></a>
+
+                </div>
+              </div>
+              </div>';
+          }
+        } else {
+          // there are no course
+          echo '<h4>There are no courses yet</h4>';
+        }
+      ?>
+        
+
+        <!-- <div class="courses-item-1">
          <div class="card">
           <img src="https://source.unsplash.com/hIgeoQjS_iE/250x160" class="img-fluid">
           <div class="card-body">
@@ -417,8 +437,8 @@
           </div>
          </div>
 
-        </div>
-        <div class="courses-item-1">
+        </div> -->
+        <!-- <div class="courses-item-1">
          <div class="card">
           <img src="https://source.unsplash.com/SYTO3xs06fU/250x160" class="img-fluid">
           <div class="card-body">
@@ -447,8 +467,8 @@
 
           </div>
          </div>
-        </div>
-        <div class="courses-item-1">
+        </div> -->
+        <!-- <div class="courses-item-1">
          <div class="card">
           <img src="https://source.unsplash.com/QckxruozjRg/250x160" class="img-fluid">
           <div class="card-body">
@@ -478,9 +498,9 @@
           </div>
          </div>
 
-        </div>
+        </div> -->
        </div>
-       <div class="row mb-4">
+       <!-- <div class="row mb-4">
         <div class="courses-item-2">
          <div class="card">
           <img src="https://source.unsplash.com/Nwl7dtZLmlc/250x160" class="img-fluid">
@@ -601,8 +621,8 @@
           </div>
          </div>
         </div>
-       </div>
-       <div class="row mb-4">
+       </div> -->
+       <!-- <div class="row mb-4">
         <div class="courses-item-3">
          <div class="card">
           <img src="https://source.unsplash.com/vMV6r4VRhJ8/250x160" class="img-fluid">
@@ -723,10 +743,10 @@
           </div>
          </div>
         </div>
-       </div>
+       </div> -->
       </div>
      </div>
-     <div class="tab-pane fade" id="popular" role="tabpanel" aria-labelledby="popular-tab">
+     <!-- <div class="tab-pane fade" id="popular" role="tabpanel" aria-labelledby="popular-tab">
       <div class="container-fluid">
        <div class="row mb-4">
         <div class="courses-item-2">
@@ -1097,8 +1117,8 @@
         </div>
        </div>
       </div>
-     </div>
-     <div class="tab-pane fade" id="recent" role="tabpanel" aria-labelledby="recent-tab">
+     </div> -->
+     <!-- <div class="tab-pane fade" id="recent" role="tabpanel" aria-labelledby="recent-tab">
       <div class="container-fluid">
        <div class="row mb-4">
         <div class="courses-item-3">
@@ -1469,7 +1489,7 @@
         </div>
        </div>
       </div>
-     </div>
+     </div> -->
     </div>
     <div class="morebtn pb-5">
      <button class="mt-3 px-4 btn btn-md btn-primary">More Courses</button>
@@ -1713,8 +1733,8 @@
  </section>
 
 
- <?php include('fragments/modals.php'); ?>
- 	
+ <?php include 'fragments/modals.php';?>
+
  <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
