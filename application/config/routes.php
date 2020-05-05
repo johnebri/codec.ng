@@ -73,6 +73,7 @@ $route['createCourseAction'] = 'app/createCourseAction';
 // $route['view/(.+)'] = 'Tickets/viewTicket/$1';
 // $route['admin/profile/(:any)'] = 'AdminControllers/Customers/profile/$1';
 $route['activateAccount/(:any)'] = 'app/activateAccount/$1';
+$route['resetPassword/(:any)'] = 'app/resetPassword/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

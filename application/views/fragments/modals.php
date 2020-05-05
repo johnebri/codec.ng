@@ -135,6 +135,32 @@
 				jQuery('#loginResult').html(data);
 		});
 	}
+
+	function forgotPassword() {
+
+		// loading starts
+		let forgotPasswordButton = document.getElementById('forgotPasswordButton');
+		let buttonText = document.getElementById('buttonText');
+		let loader = document.getElementById('loader');
+
+		buttonText.textContent = ' Please Wait';
+		submit_button.disabled = true;
+		loader.style.display = 'inline';
+
+		let forgotPasswordEmail = jQuery('#forgotPasswordEmail').val();
+
+		jQuery.post('<?php echo base_url(); ?>app/forgotPasswordAction', {
+			forgotPasswordEmail: forgotPasswordEmail
+		},
+		function(data){
+				// list.innerHTML = data;
+				// loading ends
+				buttonText.textContent = 'Reset Password';
+				submit_button.disabled = false;
+				loader.style.display = 'none';
+				jQuery('#forgotPasswordResult').html(data);
+		});
+	}
 	
 </script>
 
@@ -352,14 +378,25 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="" method="post" id="modalforgot" class="mt-1">
+				<form method="post" id="modalforgot" class="mt-1" id="passwordResetForm">
+
+					<div id="forgotPasswordResult"></div>
 
 					<div class="form-group">
-						<input type="email" name="modalforgot-email" id="modalforgot-email" placeholder="Email">
+						<input type="email" name="forgotPasswordEmail" id="forgotPasswordEmail" placeholder="Email">
 					</div>
 
 					<div class="form-group forgot-footer">
-						<input type="submit" type="button" class="mt-2 btn btn-lg btn-danger" name="modalforgot-submit" id="modalforgot-submit" value="Reset Password">
+
+						<!-- <input type="button" type="button" class="mt-2 btn btn-lg btn-danger" name="forgotPasswordButton" id="forgotPasswordButton" value="Reset Password"> -->
+
+						<button type="button" class="mt-2 btn btn-lg btn-danger" name="forgotPasswordButton" id="forgotPasswordButton" onclick="forgotPassword()">
+							<span id="loader" style="display:none;">
+								<img src="<?php echo base_url(); ?>assets/loader.gif" style="width: 30px; height: 30px;" />
+							</span>
+							<span id="buttonText">Reset Password</span>
+						</button>
+
 						<span>or <a href="#" data-target="#loginModal" data-toggle="modal" data-dismiss="modal">Log In</a></span>
 					</div>
 
