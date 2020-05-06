@@ -188,8 +188,8 @@
 			</span>
 			<aside class="dashboard__user">
 				<div class="dashboard__user-tabs">
-					<span class="dash dassh active-blue"><a href="<?php echo base_url(); ?>studentDashboard" class="dassh">Dashboard</a></span>
-					<span class="profile prof"><a href="<?php echo base_url(); ?>studentProfile" class="prof">Profile</a></span>										
+					<span class="dash dassh"><a href="<?php echo base_url(); ?>studentDashboard" class="dassh">Dashboard</a></span>
+					<span class="profile prof active-blue"><a href="<?php echo base_url(); ?>studentProfile" class="prof">Profile</a></span>
 				</div>
 
 				<div class="dashboard__info">
@@ -199,7 +199,7 @@
 
 					<div class="dashboard__info-name mt-1">
 						<h2 class="firstname">
-							<?php echo $this->input->cookie('fullname', true); ?>
+							<?php echo $this->input->cookie('fullname',true); ?>
 						</h2>
 						<h2 class="lastname">
 							<!-- Iredokun -->
@@ -218,118 +218,180 @@
 			</aside>
 		</div>
 		<!-- DASHBOARD WIDGET -->
-		<div class="widget">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="dashboard__widget-card col-md-4">
-						<div class="dashboard__widget-card-header">
-							<h5>Courses in Progress</h5>
-						</div>
-						<div class="dashboard__widget-card-body">
-							<h5 class="course-num">0</h5>
-							<a href="#" class="p-2">
-								Complete your Courses
-							</a>
-						</div>
-					</div>
-					<div class="dashboard__widget-card col-md-4">
-						<div class="dashboard__widget-card-header">
-							<h5>Completed Courses</h5>
-						</div>
-						<div class="dashboard__widget-card-body">
-							<p>Keep learning and become an Codac Graduate!</p>
-							<a href="#" class="p-2">
-								Resume Study
-							</a>
-						</div>
-					</div>
-					<div class="dashboard__widget-card col-md-4">
-						<div class="dashboard__widget-card-header">
-							<h5>My Certificates</h5>
-						</div>
-						<div class="dashboard__widget-card-body">
-							<p>You have no Certificates yet. Purchase a Certificate to see it here</p>
-							<a href="#" class="p-2">
-								Resume Study
-							</a>
-						</div>
-					</div>
-					<div class="dashboard__widget-card col-md-4">
-						<div class="dashboard__widget-card-header">
-							<h5>Goals and Achievement</h5>
-						</div>
-						<div class="dashboard__widget-card-body">
-							<p>No Medal Yet</p>
-							<a href="#" class="p-2">
-								View Goals & Medals
-							</a>
-						</div>
-					</div>
-					<div class="dashboard__widget-card col-md-4">
-						<div class="dashboard__widget-card-header">
-							<h5>Study Hours</h5>
-						</div>
-						<div class="dashboard__widget-card-body">
-							<h4>0</h4>
-							<h6>Hours Used</h6>
-						</div>
-					</div>
+		<!-- <div class="dashboard__widget widget">
+			<div class="dashboard__widget-card">
+				<div class="dashboard__widget-card-header">
+					<h5>Courses in Progress</h5>
+				</div>
+				<div class="dashboard__widget-card-body">
+					<h5 class="course-num">0</h5>
+					<a href="#" class="p-2">
+						Complete your Courses
+					</a>
 				</div>
 			</div>
-		</div>
+			<div class="dashboard__widget-card">
+				<div class="dashboard__widget-card-header">
+					<h5>Completed Courses</h5>
+				</div>
+				<div class="dashboard__widget-card-body">
+					<p>Keep learning and become an Codac Graduate!</p>
+					<a href="#" class="p-2">
+						Resume Study
+					</a>
+				</div>
+			</div>
+			<div class="dashboard__widget-card">
+				<div class="dashboard__widget-card-header">
+					<h5>My Certificates</h5>
+				</div>
+				<div class="dashboard__widget-card-body">
+					<p>You have no Certificates yet. Purchase a Certificate to see it here</p>
+					<a href="#" class="p-2">
+						Resume Study
+					</a>
+				</div>
+			</div>
+			<div class="dashboard__widget-card">
+				<div class="dashboard__widget-card-header">
+					<h5>Goals and Achievement</h5>
+				</div>
+				<div class="dashboard__widget-card-body">
+					<p>No Medal Yet</p>
+					<a href="#" class="p-2">
+						View Goals & Medals
+					</a>
+				</div>
+			</div>
+			<div class="dashboard__widget-card">
+				<div class="dashboard__widget-card-header">
+					<h5>Study Hours</h5>
+				</div>
+				<div class="dashboard__widget-card-body">
+					<h4>0</h4>
+					<h6>Hours Used</h6>
+				</div>
+			</div>
+		</div> -->
 		<!-- PROFILE WIDGET -->
-		<!-- <div class="profile__widget widget">
+		<div class="profile__widget widget">
 			<h1 class="display-4 text-center">Profile</h1>
-			<form action="#" method="post">
+			<?php
+				if(isset($_GET["success"])) {
+					echo '
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<strong>Great! </strong> Your changes were updated.
+					</div>';
+				}
+
+				if(isset($_GET["error"])) {
+					echo '
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<strong>Opps! </strong> No changes were found.
+					</div>';
+				}
+			?>
+			<form action="<?php echo base_url(); ?>editStudentProfileAction" method="post">
+
+				<input type="hidden" name="userId" value="<?php echo $userId; ?>" />
 				<div class="form-group form-bg">
 					<label for="about">Personal Profile</label>
-					<textarea style="resize: none;text-align: initial;" placeholder="Tell us a bit about yourself...." name="summary" class="about-info" id="about"></textarea>
+					<textarea style="resize: none;text-align: initial;" placeholder="Tell us a bit about yourself...." name="personalProfile" class="about-info" id="about"><?php if(isset($personalProfile)) { echo $personalProfile; } ?></textarea>
 				</div>
 
 				<div class="form-details form-bg">
 					<div class="form-details-container">
 						<div class="form-group">
-							<label for="first_name">First Name</label>
-							<input type="text" name="first_name" id="first_name" class="form-control form-control-md" placeholder="First Name">
+							<label for="firstname">First Name</label>
+							<input type="text" name="firstname" id="firstname" class="form-control form-control-md" placeholder="First Name" required value="<?php if(isset($firstname)) {echo $firstname; } ?>" >
 						</div>
 
 						<div class="form-group">
-							<label for="last_name">Last Name</label>
-							<input type="text" name="last_name" id="last_name" class="form-control form-control-md" placeholder="Last Name">
+							<label for="lastname">Last Name</label>
+							<input type="text" name="lastname" id="lastname" class="form-control form-control-md" placeholder="Last Name" required value="<?php if(isset($lastname)) {echo $lastname; } ?>">
 						</div>
 
 						<div class="form-group">
 							<label for="country">Country</label>
-							<input type="text" name="country" id="country" class="form-control form-control-md" placeholder="Country">
+							<input type="text" name="country" id="country" class="form-control form-control-md" placeholder="Country" value="<?php if(isset($country)) { echo $country; } ?> ">
 						</div>
 
 						<div class="form-group">
 							<label for="nationality">Nationality</label>
-							<input type="text" name="nationality" id="nationality" class="form-control form-control-md" placeholder="Nationality">
+							<input type="text" name="nationality" id="nationality" class="form-control form-control-md" placeholder="Nationality" value="<?php if(isset($nationality)) {echo $nationality; } ?>">
 						</div>
 
 						<div class="form-group">
 							<label for="dob">Date of birth</label>
-							<input type="text" name="dob" id="dob" class="form-control form-control-md" placeholder="eg: 11/01/2020">
+							<input type="date" name="dateOfBirth" id="dob" class="form-control form-control-md" placeholder="eg: 11/01/2020" value="<?php if(isset($dateOfBirth)) {echo $dateOfBirth; } ?>">
 						</div>
 
 						<div class="form-group">
 							<label for="email">Email</label>
-							<input type="email" name="email" id="email" class="form-control form-control-md" placeholder="Email">
+							<input type="email" name="email" id="email" class="form-control form-control-md" placeholder="Email" required value="<?php if(isset($email)) {echo $email; } ?>" readonly>
 						</div>
 
 						<div class="form-group">
 							<label for="gender">Gender</label>
 							<select class="custom-select" name="gender" id="gender">
-								<option selected>Gender</option>
-								<option value="male">Male</option>
-								<option value="female">Female</option>
+								<option value=""></option>
+								<option value="male"
+									<?php
+										if(isset($gender)) {
+											if($gender == "male") {
+												echo 'selected';
+											}
+										}
+									?>
+								>Male</option>
+								<option value="female"
+									<?php
+										if(isset($gender)) {
+											if($gender == "female") {
+												echo 'selected';
+											}
+										}
+									?>
+								>Female</option>
 							</select>
-
 						</div>
+
+						<div class="form-group">
+							<label for="subscribeToMails">Subscribe to Newsletter</label>
+							<select class="custom-select" name="subscribeToMails" id="subscribeToMails">
+								<option value=""></option>
+								<option value="yes"
+									<?php
+										if(isset($subscribeToMails)) {
+											if($subscribeToMails == "yes") {
+												echo 'selected';
+											}
+										}
+									?>	
+								>Yes</option>
+								<option value="no"
+									<?php
+										if(isset($subscribeToMails)) {
+											if($subscribeToMails == "no") {
+												echo 'selected';
+											}
+										}
+									?>	
+								>No</option>
+							</select>
+						</div>
+
 					</div>
+
+					<button type="submit" class="btn btn-primary">Save Changes</button>
 			</form>
-		</div> -->
+		</div>
 
 	</section>
 

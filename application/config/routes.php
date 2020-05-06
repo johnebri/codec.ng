@@ -74,6 +74,11 @@ $route['createCourseAction'] = 'app/createCourseAction';
 // $route['admin/profile/(:any)'] = 'AdminControllers/Customers/profile/$1';
 $route['activateAccount/(:any)'] = 'app/activateAccount/$1';
 $route['resetPassword/(:any)'] = 'app/resetPassword/$1';
+$route['resetPasswordAction'] = 'app/resetPasswordAction';
+
+$route['studentDashboard'] = 'app/studentDashboard';
+$route['studentProfile'] = 'app/studentProfile';
+$route['editStudentProfileAction'] = 'app/editStudentProfileAction';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
