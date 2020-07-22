@@ -2,10 +2,10 @@
 
 $config = array(
     'protocol' => 'smtp', // 'mail', 'sendmail', or 'smtp'
-    'smtp_host' => 'codac.pulaakutrade.com', 
+    'smtp_host' => 'codac.ng', 
     'smtp_port' => 465,
-    'smtp_user' => 'donotreply@codac.pulaakutrade.com',
-    'smtp_pass' => 'SuperAdmin**123',
+    'smtp_user' => 'noreply@codac.ng',
+    'smtp_pass' => 'noreplyAdmin',
     'smtp_crypto' => 'ssl', //can be 'ssl' or 'tls' for example
     'mailtype' => 'html', //plaintext 'text' mails or 'html'
     'smtp_timeout' => '10', //in seconds

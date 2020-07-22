@@ -232,14 +232,32 @@
 
 				<div class="col-md-6">
 
-					<form action="/action_page.php">
+					<?php 
+						if(isset($length)) {
+							echo '<p class="text-danger">'.$length.'</p>';
+						}
+						if(isset($match)) {
+							echo '<p class="text-danger">'.$match.'</p>';
+						}
+
+						if(isset($_GET['success'])) {
+							echo '<p class="text-success">Your password has been updated</p>';
+						}
+						if(isset($_GET['error'])) {
+							echo '<p class="text-success">Passowr reset failed</p>';
+						}
+					?>
+
+					<form method="post" action="<?php echo base_url(); ?>resetPasswordAction">
+						<input type="hidden" value="<?php echo $userId; ?>" name="userId" />
+						<input type="hidden" value="<?php echo $code; ?>" name="code" />
 						<div class="form-group">
-							<label for="email">New Password</label>
-							<input type="email" class="form-control" id="email">
+							<label for="password">New Password</label>
+							<input type="password" name="password" class="form-control" id="password" required>
 						</div>
 						<div class="form-group">
-							<label for="pwd">Confirm New Password</label>
-							<input type="password" class="form-control" id="pwd">
+							<label for="confirmPassword">Confirm New Password</label>
+							<input type="password" name="confirmPassword" class="form-control" id="confirmPassword" required>
 						</div>
 
 						<button type="submit" class="btn btn-primary">Submit</button>
@@ -250,8 +268,6 @@
 			</div>
 		</div>
 	</section>
-
-
 
 	<?php include 'fragments/modals.php'; ?>
 

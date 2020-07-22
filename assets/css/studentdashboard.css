@@ -113,14 +113,15 @@
   grid-gap: 20px;
   gap: 20px;
   justify-content: center;
-  display: none;
+	display: none;
 }
 .dashboard__widget-card {
   border-radius: 8px;
   padding: 0 15px 15px;
   background: #fff;
   box-shadow: 0 2px 5px 0 rgba(50, 50, 50, 0.2);
-  transition: opacity 0.3s ease-in;
+	transition: opacity 0.3s ease-in;
+	display: inline-block;
 }
 .dashboard__widget-card-header {
   text-align: center;

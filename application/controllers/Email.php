@@ -17,16 +17,16 @@ class Email extends CI_Controller{
         $mail->SMTPAuth = true; 
  
         $mail->SMTPSecure = 'ssl'; 
-        $mail->Host = 'codac.pulaakutrade.com';
+        $mail->Host = 'codac.ng';
         $mail->Port = 465;  
-        $mail->Username = 'donotreply@codac.pulaakutrade.com';
-        $mail->Password = 'SuperAdmin**123';   
+        $mail->Username = 'noreply@codac.ng';
+        $mail->Password = 'noreplyAdmin';   
    
        //   $path = 'reseller.pdf';
        //   $mail->AddAttachment($path);
    
         $mail->IsHTML(true);
-        $mail->From="codac@pulaakutrade.com";
+        $mail->From="noreply@codac.ng";
         $mail->FromName=$from_name;
         $mail->Sender=$from;
         $mail->AddReplyTo($from, $from_name);

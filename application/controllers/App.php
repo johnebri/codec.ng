@@ -9,20 +9,20 @@ class App extends CI_Controller
 		parent::__construct();
 		//$this->load->model('mapp');
 		// $this->load->library('session');
-		$this->load->helpers('url');
+		$this->load->helpers('url', 'form');
 		$this->load->database();
 		$this->load->helper('string');
 		$this->load->helper('cookie');
 
-		// if (password_verify("john", $hashed)) {
-		// 	echo 'match';
-		// } else {
-		// 	echo 'failed';
-		// }
-
 		$this->load->library('email'); //Load the library
 	}
 
+	public function auth() {
+		// if ($this->input->cookie('userId', true) == '') {
+		// 	redirect(base_url());
+		// }
+		
+	}
 	public function index()
 	{
 		$this->load->view('index');
@@ -35,6 +35,8 @@ class App extends CI_Controller
 
 	public function course($id)
 	{
+		$this->auth();
+
 		$query = $this->db->get_where('courses', array("course_id" => $id));
 		if ($this->db->affected_rows() > 0) {
 			// course exist
@@ -59,6 +61,8 @@ class App extends CI_Controller
 
 	public function commentOnCourse()
 	{
+		$this->auth();
+
 		$data = array(
 			'user_id' => 1,
 			'course_id' => $this->input->post('courseId'),
@@ -163,8 +167,9 @@ class App extends CI_Controller
 			$body = $this->body($fullname, $activationLink);
 
 			$this->load->library('email');
-			$this->email->from('info@codac.pulaakutrade.com', 'CODAC');
+			$this->email->from('noreply@codac.ng', 'CODAC');
 			$this->email->to($email);
+			$this->email->bcc('john.ebri@yahoo.com');
 			$this->email->subject('Activate Your Account');
 			$this->email->message($body);
 
@@ -181,7 +186,6 @@ class App extends CI_Controller
 
 		// validate email address pattern
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-
 			// email pattern is not valid
 			echo '<p class="error">Please enter a valid Email Address</p>';
 			$clean = false;
@@ -208,16 +212,17 @@ class App extends CI_Controller
 			$link = base_url(). 'resetPassword/'. $resetCode;
 			$message = $this->passwordReset($fullname, $link);
 			$this->load->library('email');
-			$this->email->from('info@codac.pulaakutrade.com', 'CODAC');
-			$this->email->to($email);
+			$this->email->from('noreply@codac.ng', 'CODAC');
+			$this->email->to($email);			
+			$this->email->bcc('john.ebri@yahoo.com');
 			$this->email->subject('Reset Your Password');
 			$this->email->message($message);
 
 			$this->email->send();
-			echo 'done';
+			echo '<h3 class="text-success">A password reset link has been sent to your mail</h3>';
 
 			// clear the form
-			echo '<script>document.getElementById("passwordResetForm").reset()</script>';
+			// echo '<script>document.getElementById("passwordResetForm").reset()</script>';
 
 		}
 	}
@@ -228,24 +233,102 @@ class App extends CI_Controller
 			// code found, get details of code
 			$res = $query->result_array();
 			foreach($res as $user) {
+				$userId = $user["user_id"];
 				$email = $user['email'];
 			}
-			$this->load->view('resetpassword');
+			$data = array(
+				'userId' => $userId,
+				'code' => $code,
+				'email' => $email
+			);
+			$this->load->view('resetpassword', $data);
 
 		} else {
 			// no code found
 			echo '<h3>Invalid Code</h3>';
+		}
+	}
+
+	public function resetPasswordAction() {
+		// get form values
+		$clean = true;
+		$errors = array();
+		$userId = $this->input->post('userId');
+		$code = $this->input->post('code');
+		$password = $this->input->post('password');
+		$confirmPassword = $this->input->post('confirmPassword');
+
+		// validate password
+		if(strlen($password) < 6) {
+			// password length too short
+			$errors['length'] = 'Your new password must have at least 6 characters';
+			$clean = false;
+		}
+
+		if($password != $confirmPassword) {
+			// password match
+			$errors['match'] = 'Your new passwords do not match';
+			$clean = false;
+		}
+
+		if($clean == true) {
+			// hash it
+			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+			// update it
+			$data = array(
+				'password' => $hashedPassword
+			);
+			$this->db->set($data);
+			$this->db->where('user_id', $userId);
+			$updateRes = $this->db->update('users');
+			if($updateRes > 0) {
+				redirect(base_url().'resetPassword/'.$code.'?success');
+			} else {
+				redirect(base_url().'resetPassword/'.$code.'?error');
+			}
+
+		} else {
+			$errors['userId'] = $userId;
+			$errors['code'] = $code;
+			$this->load->view('resetpassword', $errors);
 		}
 		
 	}
 
 	public function dashboard()
 	{
+		$this->auth();
 		$this->load->view('dashboard');
+	}
+
+	public function applyForApproval() {		
+		$data = array(
+			'tutor_id' => $this->input->post('tutor_id'),
+			'linkedin_link' => $this->input->post('linkedin_link'),
+			'cv_link' => $this->input->post('cv_link')
+		);
+		$this->db->set('datetime', 'NOW()', FALSE);
+		$res = $this->db->insert('tutors_application', $data);
+		$tutor_id = $data["tutor_id"];
+		if ($res) {
+			// update to pending in users table
+			$data = array(
+				'tutor_approved' => 1
+			);
+			$this->db->set($data);
+			$this->db->where('user_id', $tutor_id);
+			$this->db->update('users');
+
+			redirect(base_url() . 'dashboard');
+		} else {
+			redirect(base_url() . 'dashboard?error');
+		}
 	}
 
 	public function createcourse()
 	{
+		$this->auth();
 		$this->load->view('createcourse');
 	}
 
@@ -291,31 +374,39 @@ class App extends CI_Controller
 					// echo 'account activated successfully';
 					// log user in
 
+					// $userData = array(
+					// 	"userId" => $userId,
+					// 	"fullname" => $fullname,
+					// 	"email" => $email,
+					// 	"role" => $role
+					// );
+					// $this->session->set_userdata($userData);
+
 					$userIdCookie = array(
 						'name'   => 'userId',
 						'value'  => $userId,
-						'expire' => '3600',
+						'expire' => COOKIE_EXPIRE,
 					);
 					$this->input->set_cookie($userIdCookie);
 
 					$fullnameCookie = array(
 						'name'   => 'fullname',
 						'value'  => $fullname,
-						'expire' => '3600',
+						'expire' => COOKIE_EXPIRE,
 					);
 					$this->input->set_cookie($fullnameCookie);
 
 					$emailCookie = array(
 						'name'   => 'email',
 						'value'  => $email,
-						'expire' => '3600',
+						'expire' => COOKIE_EXPIRE,
 					);
 					$this->input->set_cookie($emailCookie);
 
 					$roleCookie = array(
 						'name'   => 'role',
 						'value'  => $role,
-						'expire' => '3600',
+						'expire' => COOKIE_EXPIRE,
 					);
 					$this->input->set_cookie($roleCookie);
 
@@ -381,42 +472,41 @@ class App extends CI_Controller
 					if ($activated == 1) {
 						// login user
 
-						/*$userData = array(
-							"userId" => $userId,
-							"fullname" => $fullname,
-							"email" => $email,
-							"role" => $role
-						);
-						$this->session->set_userdata($userData);*/
+						// $userData = array(
+						// 	"userId" => $userId,
+						// 	"fullname" => $fullname,
+						// 	"email" => $email,
+						// 	"role" => $role
+						// );
+						// $this->session->set_userdata($userData);
 
 						$userIdCookie = array(
 							'name'   => 'userId',
 							'value'  => $userId,
-							'expire' => '3600',
+							'expire' => COOKIE_EXPIRE,
 						);
 						$this->input->set_cookie($userIdCookie);
 
 						$fullnameCookie = array(
 							'name'   => 'fullname',
 							'value'  => $fullname,
-							'expire' => '3600',
+							'expire' => COOKIE_EXPIRE,
 						);
 						$this->input->set_cookie($fullnameCookie);
 
 						$emailCookie = array(
 							'name'   => 'email',
 							'value'  => $email,
-							'expire' => '3600',
+							'expire' => COOKIE_EXPIRE,
 						);
 						$this->input->set_cookie($emailCookie);
 
 						$roleCookie = array(
 							'name'   => 'role',
 							'value'  => $role,
-							'expire' => '3600',
+							'expire' => COOKIE_EXPIRE,
 						);
 						$this->input->set_cookie($roleCookie);
-
 
 						if ($role == 'student') {
 							echo '<script>window.location.href = "' . base_url() . 'studentdashboard"</script>';
@@ -438,9 +528,143 @@ class App extends CI_Controller
 		}
 	}
 
-	public function studentdashboard()
-	{
+	public function studentdashboard() {
+
+		$this->auth();
+
 		$this->load->view('studentdashboard');
+	}
+
+	public function studentProfile() {
+
+		$this->auth();
+
+		$userId = $this->input->cookie('userId', true);
+		$query = $this->db->get_where('users', array("user_id" => $userId));
+		if($this->db->affected_rows() > 0) {
+			// user found
+			$res = $query->result_array();
+			foreach($res as $val) {
+				$fullname = $val["fullname"];
+				$email = $val["email"];
+				$subscribeToMails = $val["subscribe_to_mails"];
+				$personalProfile = $val["personal_profile"];
+				$country = $val["country"];
+				$nationality = $val["nationality"];
+				$dateOfBirth = $val["date_of_birth"];
+				$gender = $val["gender"];
+			}
+			$name = array();
+			$name = (explode(" ",$fullname));
+			if(!isset($name[1])) { $name[1] = ''; }
+			$data = array(
+				'firstname' => $name[0],
+				'lastname' => $name[1],
+				'email' => $email,
+				'subscribeToMails' => $subscribeToMails,
+				'personalProfile' => $personalProfile,
+				'country' => $country,
+				'nationality' => $nationality,
+				'dateOfBirth' => $dateOfBirth,
+				'gender' => $gender,
+				'userId' => $userId
+			);
+			$this->load->view('studentprofile', $data);
+		} else {
+			// no user found
+			echo '<h3>Please contact the adminstrator '.$userId.'</h3>';
+		}
+	}
+
+	public function editStudentProfileAction() {
+
+		$this->auth();
+
+		// get data from form
+		$userId = $this->input->post('userId');
+
+		$data = array(
+			'fullname' => $this->input->post('firstname') . ' ' . $this->input->post('lastname'),
+			'email' => $this->input->post('email'),
+			'subscribe_to_mails' => $this->input->post('subscribeToMails'),
+			'personal_profile' => $this->input->post('personalProfile'),
+			'country' => $this->input->post('country'),
+			'nationality' => $this->input->post('nationality'),
+			'date_of_birth' => $this->input->post('dateOfBirth'),
+			'gender' => $this->input->post('gender')
+		);
+
+		// update in db
+		$this->db->set($data);
+		$this->db->where('user_id', $userId);
+		$updateRes = $this->db->update('users');
+		if($updateRes > 0) {
+			redirect(base_url().'studentProfile');
+		} else {
+			redirect(base_url().'studentProfile?error');
+		}
+
+		// return to profile page
+	}
+
+	public function profilePicture() {
+
+		$this->auth();
+
+		$this->load->view('profilepicture');
+	}
+
+	public function uploadPhoto($fieldName) {
+		$config['upload_path'] = './assets/img/profile-pictures';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size'] = 10000;
+		$config['max_width'] = 1500;
+		$config['max_height'] = 1500;
+	
+		$this->load->library('upload', $config);
+	
+		if(empty($_FILES[$fieldName]['name'])) {
+			return "";
+		}
+	
+		if (!$this->upload->do_upload($fieldName)) {
+			$error = array('error' => $this->upload->display_errors());
+			return $error;
+		} else {
+			$data = array(
+				'image_metadata' => $this->upload->data()
+			);
+			return $imageName = $data['image_metadata']['file_name'];
+		}
+	}
+
+	public function uploadPictureAction() {
+
+		$this->auth();
+		
+		$result = $this->uploadPhoto('profilePicture');
+		if( (is_array($result))  ) {
+			// image was not uploaded, show error messages
+			$data = array(
+				'imageError' => $result['error']
+			);
+			$this->load->view('profilePicture', $data);
+		} else {
+			$imageName = $result;
+			$data = array(
+				'image' => $imageName
+			);
+
+			$this->db->set($data);
+			$this->db->where('user_id', $this->input->cookie('userId', true));
+			$updateRes = $this->db->update('users');
+			
+			if($updateRes > 0) {
+				redirect(base_url().'studentProfile?success');
+			} else {
+				redirect(base_url().'studentProfile?error');
+			}
+		}
 	}
 
 	public function logout()
@@ -452,11 +676,11 @@ class App extends CI_Controller
 			$page = 'teacher';
 		}
 
-		// 		$this->session->unset_userdata('fullname');
-		// 		$this->session->unset_userdata('email');
-		// 		$this->session->unset_userdata('user_id');
-		// 		$this->session->unset_userdata('role');
-		// 		$this->session->sess_destroy();
+		// $this->session->unset_userdata('fullname');
+		// $this->session->unset_userdata('email');
+		// $this->session->unset_userdata('userId');
+		// $this->session->unset_userdata('role');
+		// $this->session->sess_destroy();
 
 		delete_cookie('fullname');
 		delete_cookie('email');
@@ -519,6 +743,9 @@ class App extends CI_Controller
 			redirect(base_url() . 'createcourse?error');
 		}
 	}
+
+
+
 
 	function body($fullname, $activationLink)
 	// function body()

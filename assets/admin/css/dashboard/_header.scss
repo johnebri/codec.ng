@@ -1,0 +1,90 @@
+#header {
+  padding: 5px 2%;
+  background-color: $brand_color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h1 {
+    font-size: 20px;
+    color: rgb(4, 44, 4);
+  }
+  i#menu {
+    margin-right: 20px;
+    cursor: pointer;
+    font-size: 22px;
+    transition: all 0.5s;
+  }
+  i#menu:hover {
+    color: whitesmoke;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    justify-content: flex-end;
+    padding: 10px;
+    // a#time{
+    //   margin: 0 auto;
+    //   font-weight: bolder;
+    //   width: auto;
+    //   display: block;
+    // }
+    a {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      margin: 0 5px;
+      position: relative;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+      i {
+        color: black;
+        font-size: 25px;
+      }
+      i:hover {
+        color: whitesmoke;
+      }
+      #notification{
+        color: red;
+        position: absolute;
+        top: 0px;
+        right: 3px;
+        background-color: white;
+        border-radius: 50%;
+        display: flex;
+        width: 22px;
+        height: 22px;
+        justify-content: center;
+        align-items: center;
+        font-size: 13px;
+        font-weight: bolder;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 780px) {
+  body {
+    .container {
+      header {
+        position: fixed;
+        width: 100%;
+        z-index: 5;
+
+        i#menu {
+          display: none;
+        }
+        // nav{
+          // #time{
+          //   display: block !important;
+          // }
+        // }
+      }
+    }
+  }
+}

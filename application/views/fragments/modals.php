@@ -158,6 +158,7 @@
 				buttonText.textContent = 'Reset Password';
 				submit_button.disabled = false;
 				loader.style.display = 'none';
+				forgotPasswordEmail = '';
 				jQuery('#forgotPasswordResult').html(data);
 		});
 	}

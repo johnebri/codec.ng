@@ -1,0 +1,102 @@
+
+.table {
+
+  h3 {
+    text-align: center;
+    padding: 10px 0;
+    color: $brand_color;
+  }
+  p.control{
+    padding: 20px;
+    margin: 20px auto;
+    text-align: center;
+    button{
+        display: inline-flex;
+        margin-left: 20px;
+        background-color: $brand_color;
+        font-size: 16px;
+        padding: 5px 20px;
+        border: 1px solid $brand_color;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover, button.active{
+        background-color: transparent;
+        color: $bg_color;
+        box-shadow: 2px 2px 5px $brand_color;
+    }
+}
+  .table_container {
+    border: 1px solid green;
+    overflow-x: scroll;
+    width: 320px;
+    margin: 0 auto;
+    transition: all 1s;
+    table#table {
+      border-collapse: collapse;
+      tbody {
+        tr {
+          th,
+          td {
+            border: 1px solid $bg_color;
+            padding: 3px 10px;
+          }
+          th {
+            background-color: $brand_color;
+            color: white;
+          }
+          th:nth-of-type(5),
+          td:nth-of-type(5) {
+            button {
+              width: 100%;
+              margin: 5px;
+              padding: 5px;
+              font-size: 15px;
+              background-color: green;
+              color: white;
+              border: 1px solid green;
+              cursor: pointer;
+              border-radius: 5px;
+
+            }
+            button:nth-child(2){
+                background-color: orange;
+                color: black;
+                border-color: orange;
+            }
+            button:nth-child(3){
+                background-color: red;
+                color: white;
+                border-color: red;
+            }
+            button:hover{
+                background-color: transparent;
+                color: black;
+            }
+
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 560px) {
+  .table_container {
+    width: 550px !important;
+  }
+}
+@media screen and (min-width: 992px) {
+  .table_container {
+    width: 100% !important;
+  }
+}
+
+@media screen and (min-width: 1200px){
+    .table_container{
+        width: 80%;
+
+        table{
+            width: 100%;
+        }
+    }
+}

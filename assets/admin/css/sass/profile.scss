@@ -1,0 +1,72 @@
+@import './dasboard-all';
+
+// @media screen and (min-width: 780px) {
+  .admin_profile_container {
+      text-align: center;
+      border: 2px solid $bg_color;
+      min-width: 320px;
+      max-width: 700px;
+      margin: 30px auto;
+      box-shadow: 5px 5px 5px $brand_color;
+    h3 {
+      text-align: center;
+      color: $brand_color;
+      padding: 20px 0;
+    }
+    .admin_profile {
+      text-align: center;
+      //   display: flex;
+
+      &_pix {
+          margin-bottom: 20px;
+        img {
+          width: 150px;
+          height: 150px;
+        }
+      }
+      &_details {
+        p {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          span:first-child {
+            color: $bg_color;
+            // margin-right: 20px;
+            // width: 150px;
+            display: inline-block;
+            text-align: right;
+          }
+          span:nth-child(2) {
+              text-align: left;
+              padding-left: 20px;
+              word-break: break-all;
+          }
+        }
+      }
+    }
+    a{
+        background-color: $brand_color;
+        color: white;
+        padding: 10px 20px;
+        display: inline-block;
+        margin: 20px auto;
+        text-align: center;
+        transition: all 1s;
+        border-radius: 5px;
+    }
+    a:hover{
+        background-color: transparent;
+        color: $bg_color;
+        border: 1px solid $bg_color;
+    }
+  }
+
+  li:hover, .profile-menu {
+    border: 1px solid $brand_color;
+    padding-left: 20px;
+    transition: all 0.5s;
+    box-shadow: 2px 2px 5px $brand_color;
+
+    a {
+      color: $brand_color !important;
+    }
+  }

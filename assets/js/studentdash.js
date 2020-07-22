@@ -92,7 +92,7 @@ $(document).ready(function () {
 
   if (target.classList.contains('prof')) {
 
-   $('.dashboard__widget').css('display' , 'none');
+   $('.dashboard__widget').css('display' , 'block');
    $('.profile__widget').css('display' , 'block');
    $('.profile').addClass('active-blue');
    $('.dash').removeClass('active-blue');

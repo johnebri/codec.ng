@@ -184,17 +184,84 @@
   <main class="courses hide show">
    
    <!-- CREATE COURSE -->
-   <section class="createcourse mt-4" id="createcourse">
-    <div class="createcourse__container box-shadow">
-     <span class="createcourse__text">
-      <i class="fa fa-sticky-note-o text-primary mr-4" aria-hidden="true"></i>
-      <h3>Jump Into Course Creation</h3>
-     </span>
-     <a href="<?php echo base_url(); ?>createcourse">
-      <button class="btn btn-lg btn__button">Create Your Course</button>
-     </a>
-    </div>
-   </section>
+   <!-- check if teacher acccount is approved -->
+  <?php
+    $tutor_id = $this->input->cookie('userId', true);
+    $query = $this->db->get_where('users', array("user_id" => $tutor_id));
+    if($this->db->affected_rows() < 1) {
+      echo 'You are not logged in';
+      exit();
+    } else {
+      $res = $query->result_array();
+      foreach($res as $val) {
+        $approved = $val['tutor_approved'];
+      }
+    } 
+    
+    if($approved == 0) {
+      // tutor is not approved
+      ?>
+      <div class="createcourse__container box-shadow">
+        <span class="createcourse__text">
+          <i class="fa fa-sticky-note-o text-primary mr-4" aria-hidden="true"></i>
+          <h2>Apply for approval</h2>
+        </span>
+
+        <br />
+
+        <form action="<?php echo base_url(); ?>apply_for_approval" method="post">
+          <div class="form-group">
+            <input type="hidden" class="form-control" name="tutor_id" value="<?php echo $this->input->cookie('userId', true); ?>">
+            <label for="">LinkedIn Profile URL</label>
+            <input type="url" class="form-control" name="linkedin_link" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pwd">Link to CV</label>
+            <input type="url" class="form-control" name="cv_link" required>
+          </div>
+         
+          <button type="submit" class="btn btn-default" class="btn btn-primary">Apply for Approval</button>
+        </form>
+
+
+        <a href="">
+          <button class="btn btn-lg btn__button"></button>
+        </a>
+        </div>
+      </section>
+      <?php
+
+    } else if($approved == 1) {
+      // tutor approval is pending
+      ?>
+      <div class="createcourse__container box-shadow">
+        <span class="createcourse__text">
+          <i class="fa fa-sticky-note-o text-primary mr-4" aria-hidden="true"></i>
+          <h3>Your application is under review. You will get a mail once it is approved</h3>
+        </span>
+        <!-- <a href="<?php echo base_url(); ?>createcourse">
+          <button class="btn btn-lg btn__button">Create Your Course</button>
+        </a> -->
+        </div>
+      </section>
+      <?php
+    } else if($approved == 2) {
+      // tutor is approved to post courses
+      ?>
+      <div class="createcourse__container box-shadow">
+        <span class="createcourse__text">
+          <i class="fa fa-sticky-note-o text-primary mr-4" aria-hidden="true"></i>
+          <h3>Jump Into Course Creation</h3>
+        </span>
+        <a href="<?php echo base_url(); ?>createcourse">
+          <button class="btn btn-lg btn__button">Create Your Course</button>
+        </a>
+        </div>
+      </section>
+      <?php
+    }
+  ?>
 
    <div class="info marginbt" id="info">
     <h3>Based on your experience, we think these resources will be helpful.</h3>
